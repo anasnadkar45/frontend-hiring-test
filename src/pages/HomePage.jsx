@@ -12,9 +12,13 @@ const HomePage = () => {
     const limit = 10;
 
     useEffect(() => {
-        fetchEmployees();
-        const timer = setTimeout(() => {
+        const fetchEmployeesWithDelay = async () => {
+            setLoading(true);
+            await fetchEmployees();
             setLoading(false);
+        }
+        const timer = setTimeout(() => {
+            fetchEmployeesWithDelay();
         }, 400);
 
         return () => clearTimeout(timer);
