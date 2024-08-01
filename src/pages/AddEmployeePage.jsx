@@ -30,8 +30,8 @@ const AddEmployeePage = () => {
             const response = await axios.post('https://free-ap-south-1.cosmocloud.io/development/api/employees', employeeData, {
                 headers: {
                     'Content-Type': 'application/json', 
-                    'projectId': '66ab2c7300af110a2a57a49a',
-                    'environmentId': '66ab2c7300af110a2a57a49b',
+                    'projectId': '66aba561733137118d4cff16',
+                    'environmentId': '66aba561733137118d4cff17',
                 },
             });
             console.log('Employee data:', response.data);

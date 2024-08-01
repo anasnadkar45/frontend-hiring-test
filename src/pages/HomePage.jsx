@@ -9,7 +9,7 @@ const HomePage = () => {
     const [loading, setLoading] = useState(true);
     const [totalEmployees, setTotalEmployees] = useState(0);
     const [offset, setOffset] = useState(0);
-    const limit = 10;
+    const limit = 6;
 
     useEffect(() => {
         const fetchEmployeesWithDelay = async () => {
@@ -28,8 +28,8 @@ const HomePage = () => {
         try {
             const response = await axios.get('https://free-ap-south-1.cosmocloud.io/development/api/employees', {
                 headers: {
-                    'projectId': '66ab2c7300af110a2a57a49a',
-                    'environmentId': '66ab2c7300af110a2a57a49b',
+                    'projectId': '66aba561733137118d4cff16',
+                    'environmentId': '66aba561733137118d4cff17',
                 },
                 params: {
                     limit,
@@ -38,7 +38,7 @@ const HomePage = () => {
             });
             setEmployees(response.data.data);
             setTotalEmployees(response.data.page.total);
-            console.log(response.data.page.total);
+            console.log(response.data.data);
         } catch (error) {
             console.error('Error fetching employees:', error.message);
         }
