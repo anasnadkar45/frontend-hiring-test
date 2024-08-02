@@ -9,10 +9,8 @@ const HomePage = () => {
     const [employees, setEmployees] = useState([]);
     const [loading, setLoading] = useState(true);
     const [totalEmployees, setTotalEmployees] = useState(0);
-    // setting offser like how many employees should be skipped
-    const [offset, setOffset] = useState(0);
-    // defining the limit of how many employees should be fetched at a time
-    const limit = 6;
+    const [offset, setOffset] = useState(0); // setting offset like how many employees should be skipped
+    const limit = 6; // defining the limit of how many employees should be fetched at a time
 
     // defining the useEffect for by applying debounce for fetching employees
     useEffect(() => {
@@ -27,8 +25,7 @@ const HomePage = () => {
 
         return () => clearTimeout(timer);
 
-        // whenever the offset value changes data will be recalculated or fetched
-    }, [offset]);
+    }, [offset]); // whenever the offset value changes data will be recalculated or fetched
 
     const fetchEmployees = async () => {
         try {
