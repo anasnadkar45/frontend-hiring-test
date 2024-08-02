@@ -5,12 +5,16 @@ import React, { useEffect, useState } from 'react'
 import { ThreeDots } from 'react-loader-spinner';
 
 const HomePage = () => {
+    // defining the states
     const [employees, setEmployees] = useState([]);
     const [loading, setLoading] = useState(true);
     const [totalEmployees, setTotalEmployees] = useState(0);
+    // setting offser like how many employees should be skipped
     const [offset, setOffset] = useState(0);
+    // defining the limit of how many employees should be fetched at a time
     const limit = 6;
 
+    // defining the useEffect for by applying debounce for fetching employees
     useEffect(() => {
         const fetchEmployeesWithDelay = async () => {
             setLoading(true);
@@ -22,6 +26,8 @@ const HomePage = () => {
         }, 400);
 
         return () => clearTimeout(timer);
+
+        // whenever the offset value changes data will be recalculated or fetched
     }, [offset]);
 
     const fetchEmployees = async () => {
@@ -44,12 +50,14 @@ const HomePage = () => {
         }
     };
 
+    // handling the next page
     const handleNext = () => {
         if (offset + limit < totalEmployees) {
             setOffset(offset + limit)
         }
     }
 
+    // handle the previous page
     const handlePrev = () => {
         if (offset > 0) {
             setOffset(offset - limit)

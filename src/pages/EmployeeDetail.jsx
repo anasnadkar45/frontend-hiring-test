@@ -8,6 +8,7 @@ import { ThreeDots } from 'react-loader-spinner';
 import { useParams } from 'react-router-dom';
 
 const EmployeeDetail = () => {
+    // State to hold employee data
     const [employeeData, setEmployeeData] = useState(null);
     const [loading, setLoading] = useState(true)
     const { id } = useParams();
@@ -20,6 +21,7 @@ const EmployeeDetail = () => {
         return () => clearTimeout(timer);
     }, [id])
 
+    // Function to fetch employee details from the cosmocloud API
     const fetchEmployeeDetails = async (id) => {
         try {
             const response = await axios.get(`https://free-ap-south-1.cosmocloud.io/development/api/employees/${id}`, {

@@ -5,6 +5,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 
 const AddEmployeePage = () => {
+    // defining the states
     const [name, setName] = useState('');
     const [address, setAddress] = useState({
         line1: '',
@@ -17,9 +18,11 @@ const AddEmployeePage = () => {
         phone: ''
     });
 
+    // Handling the form submission for adding an employee
     const handleAddEmployee = async (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Prevent default form submission behavior
 
+         // Creating an employee data object to send in the API request
         const employeeData = {
             name,
             address,
@@ -27,6 +30,7 @@ const AddEmployeePage = () => {
         };
 
         try {
+            // Send a POST request to the API to add the employee
             const response = await axios.post('https://free-ap-south-1.cosmocloud.io/development/api/employees', employeeData, {
                 headers: {
                     'Content-Type': 'application/json', 
@@ -41,6 +45,7 @@ const AddEmployeePage = () => {
         }
     };
 
+    // Reset form fields to their initial state
     const resetForm = () => {
         setName('');
         setAddress({ line1: '', city: '', country: '', zipcode: '' });

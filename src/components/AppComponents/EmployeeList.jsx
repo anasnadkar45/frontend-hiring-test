@@ -4,9 +4,11 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const EmployeeList = ({ employees, setEmployees, fetchEmployees }) => {
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // Hook to navigate between routes
+
+    // Function to handle employee deletion
     const handleDeleteEmployee = async (id, e) => {
-        e.stopPropagation();
+        e.stopPropagation(); // Prevent event bubbling to parent elements
         try {
             await axios.delete(`https://free-ap-south-1.cosmocloud.io/development/api/employees/${id}`, {
                 headers: {
@@ -24,7 +26,7 @@ const EmployeeList = ({ employees, setEmployees, fetchEmployees }) => {
 
 
     return (
-        <div className='border bg-white rounded-lg'>
+        <div className='border w-full bg-white rounded-lg'>
             <table className='w-full'>
                 <thead className='w-full'>
                     <tr style={{ scrollbarWidth: 'none' }} className='w-full grid grid-cols-7 overflow-y-scroll' >
@@ -39,10 +41,10 @@ const EmployeeList = ({ employees, setEmployees, fetchEmployees }) => {
                         const { name, _id } = employee;
                         const { email } = employee.contact;
                         return (
-                            <tr onClick={() => navigate(`/employee/${_id}`)} key={_id} style={{ scrollbarWidth: 'none' }} className=" w-full items-center hover:cursor-pointer hover:bg-background transition-all duration-400 grid grid-cols-7 overflow-y-scroll border-b border">
-                                <td className="px-6 py-4 text-black col-span-2">{name}</td>
-                                <td className="px-6 py-4 text-black col-span-2">{_id}</td>
-                                <td className="px-6 py-4 text-black col-span-2">{email}</td>
+                            <tr onClick={() => navigate(`/employee/${_id}`)} key={_id} className="min-w-[450px]  border-b border hover:bg-background transition-all duration-400 sm:grid sm:grid-cols-7 flex flex-col md:items-center sm:flex-row">
+                                <td className="px-6 py-4 text-black col-span-2">{name}</td> {/* Display employee name */}
+                                <td className="px-6 py-4 text-black col-span-2">{_id}</td> {/* Display employee ID */}
+                                <td className="px-6 py-4 text-black col-span-2">{email}</td> {/* Display employee email */}
                                 <td className='px-6 py-4 col-span-1'>
                                     <Button variant={'destructive'} onClick={(e) => handleDeleteEmployee(_id, e)} className='w-full'>Delete</Button>
                                 </td>
